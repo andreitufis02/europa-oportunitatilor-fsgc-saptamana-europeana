@@ -1,0 +1,1 @@
+# europa-oportunitatilor-fsgc-saptamana-europeana
