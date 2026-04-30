@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="logo/FSGC-06.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Europa Oportunităților</title>
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#landing" data-nav="landing" aria-label="Europa Oportunităților">
+        
+        <span>
+          <strong>Europa Oportunităților</strong>
+          <small>FSGC / Săptămâna Europeană</small>
+        </span>
+      </a>
+      <div class="campaign-lockup" aria-label="Identitate vizuală Săptămâna Europeană FSGC">
+        <span class="campaign-logo-frame">
+          <img src="assets/saptamana-europeana-campaign.png" alt="Săptămâna Europeană FSGC" />
+        </span>
+        <span class="campaign-lockup-copy">
+          <strong>Săptămâna Europeană</strong>
+          <small>campanie FSGC</small>
+        </span>
+      </div>
+      <nav class="topnav" aria-label="Navigare principală">
+        <button class="nav-link is-active" type="button" data-nav="landing" data-short="Campanie">Campanie</button>
+        <button class="nav-link" type="button" data-nav="participate" data-short="Participă">Participă</button>
+        <button class="nav-link" type="button" data-nav="dashboard" data-short="Date">Dashboard</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="landing" class="screen is-active" aria-labelledby="landing-title">
+        <div class="hero">
+          <div class="hero-grid" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <p class="eyebrow">Exercițiu de reflecție europeană</p>
+            <h1 id="landing-title">Europa Oportunităților</h1>
+            <p class="hero-subtitle">O hartă interactivă a aspirațiilor, fricilor și ambițiilor tinerilor</p>
+            <p class="hero-description">
+              Alege unde ai învăța, unde ai contribui, unde te vezi în viitor și ce te-ar ajuta să ajungi acolo.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-action" type="button" data-nav="participate">Începe exercițiul</button>
+              <button class="secondary-action" type="button" data-nav="dashboard">Vezi rezultatele</button>
+            </div>
+          </div>
+          <div class="hero-map" id="landing-map" aria-label="Hartă reală a Europei"></div>
+          <div class="hero-stats" aria-label="Statistici live">
+            <article>
+              <span id="landing-total">0</span>
+              <small>răspunsuri colectate</small>
+            </article>
+            <article>
+              <span id="landing-countries">0</span>
+              <small>țări selectate</small>
+            </article>
+            <article>
+              <span id="landing-top-direction">-</span>
+              <small>top aspirație</small>
+            </article>
+          </div>
+        </div>
+
+        <div class="landing-preview">
+          <section class="preview-copy">
+            <p class="section-kicker">Ce măsoară platforma</p>
+            <h2>De la preferințe individuale la o hartă colectivă a generației</h2>
+            <p>
+              Fiecare răspuns devine un semnal: țara aleasă, motivația, bariera percepută, nivelul de realism și
+              cuvântul-cheie care descrie aspirația.
+            </p>
+          </section>
+          <div class="signal-strip" aria-label="Tipuri de semnale colectate">
+            <article>
+              <strong>Direcție</strong>
+              <span>învățare, viitor, implicare, barieră, identitate</span>
+            </article>
+            <article>
+              <strong>Țară</strong>
+              <span>hartă europeană interactivă cu intensitate pe voturi</span>
+            </article>
+            <article>
+              <strong>Analiză</strong>
+              <span>ranking, heatmap, matrice dorință / realism</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="participate" class="screen" aria-labelledby="participate-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Modul participare</p>
+            <h2 id="participate-title">Construiește un răspuns în 5 pași</h2>
+          </div>
+          <p id="draft-status" class="draft-status" aria-live="polite">Draft salvat local</p>
+        </div>
+
+        <div class="wizard-shell">
+          <aside class="stepper" aria-label="Pașii exercițiului" id="stepper"></aside>
+          <section class="wizard-panel" id="wizard-panel" aria-live="polite"></section>
+        </div>
+      </section>
+
+      <section id="dashboard" class="screen" aria-labelledby="dashboard-title">
+        <div class="section-head dashboard-head">
+          <div>
+            <p class="section-kicker">Dashboard live</p>
+            <h2 id="dashboard-title">Ce spune harta despre generația voastră?</h2>
+          </div>
+          <div class="export-actions">
+            <button class="secondary-action compact" type="button" id="download-csv">Descarcă CSV</button>
+            <button class="secondary-action compact" type="button" id="download-json">Descarcă JSON</button>
+            <button class="danger-action compact" type="button" id="clear-data">Șterge date locale</button>
+          </div>
+        </div>
+
+        <div class="filter-bar" aria-label="Filtre dashboard">
+          <label>
+            Categorie
+            <select id="filter-direction"></select>
+          </label>
+          <label>
+            Clasă
+            <select id="filter-class"></select>
+          </label>
+          <label>
+            Liceu
+            <select id="filter-school"></select>
+          </label>
+          <label>
+            Oraș
+            <select id="filter-city"></select>
+          </label>
+          <label>
+            Tip oportunitate
+            <select id="filter-opportunity"></select>
+          </label>
+        </div>
+
+        <div class="snapshot-grid" id="snapshot-grid"></div>
+
+        <div class="dashboard-grid">
+          <section class="analysis-panel ranking-panel" aria-labelledby="ranking-title">
+            <div class="panel-head">
+              <div>
+                <p class="section-kicker">Ranking</p>
+                <h3 id="ranking-title">Top țări alese</h3>
+              </div>
+              <span class="panel-meta" id="ranking-count">0 răspunsuri</span>
+            </div>
+            <div id="ranking-chart" class="ranking-chart"></div>
+          </section>
+
+          <section class="analysis-panel map-panel" aria-labelledby="map-title">
+            <div class="panel-head">
+              <div>
+                <p class="section-kicker">Hartă aspirații</p>
+                <h3 id="map-title">Intensitate pe țări</h3>
+              </div>
+              <div class="map-tabs" id="map-tabs" aria-label="Filtru hartă"></div>
+            </div>
+            <div id="dashboard-map" class="dashboard-map"></div>
+            <div id="country-insight" class="country-insight">Selectează o țară de pe hartă pentru motive și exemple.</div>
+          </section>
+
+          <section class="analysis-panel matrix-panel" aria-labelledby="matrix-title">
+            <div class="panel-head">
+              <div>
+                <p class="section-kicker">Matrice strategică</p>
+                <h3 id="matrix-title">Dorință vs realism perceput</h3>
+              </div>
+              <span class="panel-meta">scală 1-5</span>
+            </div>
+            <div class="matrix" id="matrix-chart" aria-label="Matrice dorință realism"></div>
+          </section>
+
+          <section class="analysis-panel words-panel" aria-labelledby="words-title">
+            <div class="panel-head">
+              <div>
+                <p class="section-kicker">Calitativ</p>
+                <h3 id="words-title">Cuvinte și bariere recurente</h3>
+              </div>
+            </div>
+            <div class="two-column">
+              <div>
+                <h4>Cuvinte frecvente</h4>
+                <div id="word-cloud" class="chip-cloud"></div>
+              </div>
+              <div>
+                <h4>Bariere frecvente</h4>
+                <div id="barrier-cloud" class="chip-cloud"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="vendor/leaflet/leaflet.js"></script>
+    <script src="data/europe-countries.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
