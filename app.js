@@ -14,7 +14,7 @@ const directions = [
     label: "Viitor",
     color: "#14805e",
     short: "viitor",
-    prompt: "Ce țară europeană ți se pare că arată cum ar putea arăta viitorul?"
+    prompt: "Ce țară europeană crezi că reflectă cel mai bine cum ar putea arăta viitorul?"
   },
   {
     id: "implicare",
