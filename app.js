@@ -21,21 +21,21 @@ const directions = [
     label: "Implicare",
     color: "#c99812",
     short: "voluntariat",
-    prompt: "Unde ai merge ca să ajuți, să contribui sau să faci voluntariat?"
+    prompt: "În ce țară ai merge pentru a face voluntariat?"
   },
   {
     id: "bariera",
     label: "Barieră",
     color: "#c43f4b",
     short: "barieră",
-    prompt: "Unde ai ezita să mergi și de ce?"
+    prompt: "În ce țară ai ezita să mergi și de ce?"
   },
   {
     id: "identitate",
     label: "Identitate",
     color: "#6e55c7",
     short: "identitate",
-    prompt: "Ce țară se potrivește cu persoana care ai vrea să devii peste 10 ani?"
+    prompt: "Ce țară crezi că te reprezintă cel mai bine peste 10 ani?"
   }
 ];
 
